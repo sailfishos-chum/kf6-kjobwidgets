@@ -1,37 +1,49 @@
 %global kf6_version 6.18.0
 %global qt_version 6.8.3
 
-Name:       kf6-kjobwidgets
-Version:    6.18.0
-Release:    1%{?dist}
-Summary:    KDE Frameworks 6 Tier 2 addon for KJobs
-
-License:        LGPLv2+
+Name:           kf6-kjobwidgets
+Version:        6.18.0
+Release:        1%{?dist}
+Summary:        KDE Frameworks 6 Tier 2 addon for KJobs
+# The following are in the LICENSES folder, but go unused: LGPL-3.0-only, LicenseRef-KDE-Accepted-LGPL
+License:        CC0-1.0 AND LGPL-2.0-only AND LGPL-2.0-or-later
 URL:            https://invent.kde.org/frameworks/kjobwidgets
+
 Source0: %{name}-%{version}.tar.bz2
 
-%{?opt_kf6_default_filter}
-
 BuildRequires: kf6-extra-cmake-modules
-BuildRequires: kf6-kcoreaddons-devel >= %{kf6_version}
-BuildRequires: kf6-kwidgetsaddons-devel >= %{kf6_version}
-BuildRequires: kf6-rpm-macros
-BuildRequires: qt6-qtbase-devel >= %{qt_version}
-BuildRequires: qt6-qttools-devel
+BuildRequires:  cmake
+BuildRequires:  gcc-c++
+BuildRequires:  kf6-rpm-macros
+#BuildRequires:  libX11-devel
+BuildRequires:  qt6-qtbase-devel >= %{qt_version}
+BuildRequires:  qt6-qttools-devel
+BuildRequires:  qt6-qtbase-private-devel
+BuildRequires:  kf6-kcoreaddons-devel
+BuildRequires:  kf6-knotifications-devel
+BuildRequires:  kf6-kwidgetsaddons-devel
+#BuildRequires:  python3-devel
+#BuildRequires:  python3-build
+#BuildRequires:  python3-setuptools
+#BuildRequires:  python3-wheel
+#BuildRequires:  clang-devel
 
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
-Requires: qt6-qtbase-gui
-Requires: kf6-kcoreaddons >= %{kf6_version}
-Requires: kf6-kwidgetsaddons >= %{kf6_version}
+BuildRequires:  pkgconfig(xkbcommon)
+#Requires:       kf6-filesystem
 
 %description
-KDE Frameworks 6 Tier 2 addon for KJobs
+%{summary}.
+
+#%%package        -n python3-%{name}
+#Summary:        Qt for Python bindings for %{name}
+#%%description    -n python3-%{name}
+#The package contains the pyside6 bindings library for %%{name}
 
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires: qt6-qtbase-devel
-Requires: kf6-kcoreaddons-devel >= %{version}
+Requires:       qt6-qtbase-devel
+Requires:       kf6-kcoreaddons-devel
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
@@ -56,13 +68,12 @@ developing applications that use %{name}.
 %files -f kjobwidgets6_qt.lang
 %doc README.md
 %license LICENSES/*.txt
-%{_opt_kf6_datadir}/qlogging-categories6/kjobwidgets.*
-%{_opt_kf6_libdir}/libKF6JobWidgets.so.*
+%{_kf6_datadir}/qlogging-categories6/kjobwidgets.*
+%{_kf6_libdir}/libKF6JobWidgets.so.*
 
 %files devel
+%{_kf6_includedir}/KJobWidgets/
+%{_kf6_libdir}/libKF6JobWidgets.so
+%{_kf6_libdir}/cmake/KF6JobWidgets/
+%{_kf6_datadir}/dbus-1/interfaces/*.xml
 
-%{_opt_kf6_includedir}/KF6/KJobWidgets/
-%{_opt_kf6_libdir}/libKF6JobWidgets.so
-%{_opt_kf6_libdir}/cmake/KF6JobWidgets/
-%{_opt_kf6_datadir}/dbus-1/interfaces/*.xml
-%{_opt_kf6_archdatadir}/mkspecs/modules/qt_KJobWidgets.pri
