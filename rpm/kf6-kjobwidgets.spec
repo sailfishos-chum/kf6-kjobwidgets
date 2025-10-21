@@ -53,7 +53,10 @@ developing applications that use %{name}.
 %autosetup -n %{name}-%{version}/upstream -p1
 
 %build
-%cmake_kf6
+%cmake_kf6 \
+  -DWITH_X11:BOOL=OFF \
+  -DBUILD_PYTHON_BINDINGS:BOOL=OFF \
+  %{nil}
 %cmake_build
 
 %install
