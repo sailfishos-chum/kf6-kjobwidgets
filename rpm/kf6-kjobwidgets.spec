@@ -1,4 +1,4 @@
-%global kf_version 6.18.0
+%global kf_version 6.28.0
 
 Name:           kf6-kjobwidgets
 Version: 6.28.0
