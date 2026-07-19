@@ -1,4 +1,4 @@
-%global kf6_version 6.18.0
+%global kf_version 6.18.0
 %global qt_version 6.8.3
 
 Name:           kf6-kjobwidgets
