@@ -1,5 +1,4 @@
 %global kf_version 6.18.0
-%global qt_version 6.8.3
 
 Name:           kf6-kjobwidgets
 Version: 6.28.0
@@ -16,7 +15,7 @@ BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 #BuildRequires:  libX11-devel
-BuildRequires:  qt6-qtbase-devel >= %{qt_version}
+BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qttools-devel
 BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  kf6-kcoreaddons-devel
